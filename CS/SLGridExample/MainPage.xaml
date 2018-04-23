@@ -1,0 +1,50 @@
+﻿<UserControl x:Class="SLGridExample.MainPage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns:local="clr-namespace:SLGridExample"
+             >
+
+    <UserControl.DataContext>
+        <local:PersonsViewModel />
+    </UserControl.DataContext>
+
+    <UserControl.Resources>
+
+        <local:SelectionStateToBrushConverter x:Key="SelectionStateToBrushConverter">
+
+            <local:SelectionStateToBrushConverter.NormalBrush>
+                <SolidColorBrush Color="White"/>
+            </local:SelectionStateToBrushConverter.NormalBrush>
+
+            <local:SelectionStateToBrushConverter.FocusedBrush>
+                <SolidColorBrush Color="Orange"/>
+            </local:SelectionStateToBrushConverter.FocusedBrush>
+            
+            <local:SelectionStateToBrushConverter.SelectedBrush>
+                <SolidColorBrush Color="OrangeRed"/>
+            </local:SelectionStateToBrushConverter.SelectedBrush>
+                   
+        </local:SelectionStateToBrushConverter>
+
+
+        <DataTemplate x:Key="customDataRowTemplate">
+            <Grid>
+                <Border Background="{Binding Path=SelectionState, Converter={StaticResource SelectionStateToBrushConverter}}"/>
+                <ContentPresenter Name="content" Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}" />
+            </Grid>
+        </DataTemplate>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <dxg:GridControl Name="grid" ItemsSource="{Binding Persons}" AutoPopulateColumns="True">
+            <dxg:GridControl.View>
+                <dxg:TableView DataRowTemplate="{StaticResource customDataRowTemplate}"
+                               MultiSelectMode="Row"
+                               />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+    </Grid>
+</UserControl>
