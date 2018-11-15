@@ -1,3 +1,9 @@
+<!-- default file list -->
+*Files to look at*:
+
+* [MainPage.xaml](./CS/SLGridExample/MainPage.xaml) (VB: [MainPage.xaml](./VB/SLGridExample/MainPage.xaml))
+* [SelectionStateToBrushConverter.cs](./CS/SLGridExample/SelectionStateToBrushConverter.cs) (VB: [SelectionStateToBrushConverter.vb](./VB/SLGridExample/SelectionStateToBrushConverter.vb))
+<!-- default file list end -->
 # How to change focused row background
 
 
